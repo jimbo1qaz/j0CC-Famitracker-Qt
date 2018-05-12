@@ -59,14 +59,6 @@ unix:!mac {
 DEFINES -= UNICODE
 DEFINES += NOMINMAX NULL=0
 
-INCLUDEPATH += \
-   . \
-   Source \
-   $$TOP/common
-
-INCLUDEPATH += Source/APU
-
-
 
 # boost is unused
 #BOOST_CXXFLAGS=-I$$DEPENDENCYROOTPATH/boost_1_64_0
@@ -116,6 +108,15 @@ LIBS += $$SDL_LIBS $$RTMIDI_LIBS
 
 
 
+INCLUDEPATH += \
+    . \
+    common \
+    glue \
+    Source \
+    Source/APU \
+
+INCLUDEPATH +=
+
 
 # begin regenerated
 
@@ -123,7 +124,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-           cqtmfc_famitracker.cpp \
+           glue/cqtmfc_famitracker.cpp \
            Source/AboutDlg.cpp \
            Source/Accelerator.cpp \
            Source/Action.cpp \
@@ -290,40 +291,15 @@ SOURCES += \
            Source/WavProgressDlg.cpp
 
 HEADERS += \
-           /Source/AboutDlg.h \
-           /Source/afxmt.h \
-           /Source/ChannelsDlg.h \
-           /Source/CommentsDlg.h \
-           /Source/ConfigAppearance.h \
-           /Source/ConfigGeneral.h \
-           /Source/ConfigMIDI.h \
-           /Source/ConfigMixer.h \
-           /Source/ConfigShortcuts.h \
-           /Source/ConfigSound.h \
-           /Source/ControlPanelDlg.h \
-           /Source/CreateWaveDlg.h \
-           /Source/ExportDialog.h \
-           /Source/FamiTrackerDoc.h \
-           /Source/InstrumentEditDlg.h \
-           /Source/InstrumentEditorDPCM.h \
-           /Source/InstrumentEditorFDS.h \
-           /Source/InstrumentEditorFDSEnvelope.h \
-           /Source/InstrumentEditorN163Wave.h \
-           /Source/InstrumentEditorVRC7.h \
-           /Source/InstrumentEditPanel.h \
-           /Source/ModuleImportDlg.h \
-           /Source/ModulePropertiesDlg.h \
-           /Source/PCMImport.h \
-           /Source/SampleEditorDlg.h \
-           /Source/SpeedDlg.h \
-           /Source/stdafx.h \
-           /Source/WavProgressDlg.h \
-           /version.h \
-           cqtmfc_famitracker.h \
-           resource.h \
+           glue/cqtmfc_famitracker.h \
+           glue/resource.h \
+           glue/version.h \
+           \
+           Source/AboutDlg.h \
            Source/AboutDlg.h \
            Source/Accelerator.h \
            Source/Action.h \
+           Source/afxmt.h \
            Source/afxmt.h \
            Source/APU/2413tone.h \
            Source/APU/2A03.h \
@@ -358,6 +334,7 @@ HEADERS += \
            Source/ChannelMap.h \
            Source/Channels2A03.h \
            Source/ChannelsDlg.h \
+           Source/ChannelsDlg.h \
            Source/ChannelsFDS.h \
            Source/ChannelsMMC5.h \
            Source/ChannelsN163.h \
@@ -372,18 +349,27 @@ HEADERS += \
            Source/ColorScheme.h \
            Source/CommandLineExport.h \
            Source/CommentsDlg.h \
+           Source/CommentsDlg.h \
            Source/Common.h \
            Source/Compiler.h \
            Source/CompoundAction.h \
            Source/ConfigAppearance.h \
+           Source/ConfigAppearance.h \
+           Source/ConfigGeneral.h \
            Source/ConfigGeneral.h \
            Source/ConfigMIDI.h \
+           Source/ConfigMIDI.h \
+           Source/ConfigMixer.h \
            Source/ConfigMixer.h \
            Source/ConfigShortcuts.h \
+           Source/ConfigShortcuts.h \
+           Source/ConfigSound.h \
            Source/ConfigSound.h \
            Source/ConfigVersion.h \
            Source/ConfigWindow.h \
            Source/ControlPanelDlg.h \
+           Source/ControlPanelDlg.h \
+           Source/CreateWaveDlg.h \
            Source/CreateWaveDlg.h \
            Source/CustomControls.h \
            Source/CustomExporter.h \
@@ -410,8 +396,10 @@ HEADERS += \
            Source/DSampleManager.h \
            Source/Exception.h \
            Source/ExportDialog.h \
+           Source/ExportDialog.h \
            Source/Factory.h \
            Source/FamiTracker.h \
+           Source/FamiTrackerDoc.h \
            Source/FamiTrackerDoc.h \
            Source/FamiTrackerTypes.h \
            Source/FamiTrackerView.h \
@@ -435,12 +423,19 @@ HEADERS += \
            Source/Instrument.h \
            Source/Instrument2A03.h \
            Source/InstrumentEditDlg.h \
+           Source/InstrumentEditDlg.h \
+           Source/InstrumentEditorDPCM.h \
            Source/InstrumentEditorDPCM.h \
            Source/InstrumentEditorFDS.h \
+           Source/InstrumentEditorFDS.h \
            Source/InstrumentEditorFDSEnvelope.h \
+           Source/InstrumentEditorFDSEnvelope.h \
+           Source/InstrumentEditorN163Wave.h \
            Source/InstrumentEditorN163Wave.h \
            Source/InstrumentEditorSeq.h \
            Source/InstrumentEditorVRC7.h \
+           Source/InstrumentEditorVRC7.h \
+           Source/InstrumentEditPanel.h \
            Source/InstrumentEditPanel.h \
            Source/InstrumentFactory.h \
            Source/InstrumentFDS.h \
@@ -459,6 +454,8 @@ HEADERS += \
            Source/ModSequenceEditor.h \
            Source/ModuleException.h \
            Source/ModuleImportDlg.h \
+           Source/ModuleImportDlg.h \
+           Source/ModulePropertiesDlg.h \
            Source/ModulePropertiesDlg.h \
            Source/NoNotifyEdit.h \
            Source/NoteQueue.h \
@@ -472,12 +469,14 @@ HEADERS += \
            Source/PatternEditorTypes.h \
            Source/PatternNote.h \
            Source/PCMImport.h \
+           Source/PCMImport.h \
            Source/PerformanceDlg.h \
            Source/RecordSettingsDlg.h \
            Source/RegisterState.h \
            Source/resampler/resample.hpp \
            Source/resampler/resample.inl \
            Source/resampler/sinc.hpp \
+           Source/SampleEditorDlg.h \
            Source/SampleEditorDlg.h \
            Source/SampleEditorView.h \
            Source/SeqInstHandler.h \
@@ -499,7 +498,9 @@ HEADERS += \
            Source/SizeEditor.h \
            Source/SoundGen.h \
            Source/SpeedDlg.h \
+           Source/SpeedDlg.h \
            Source/SplitKeyboardDlg.h \
+           Source/stdafx.h \
            Source/stdafx.h \
            Source/str_conv/str_conv.hpp \
            Source/str_conv/utf8_conv.hpp \
@@ -519,9 +520,9 @@ HEADERS += \
            Source/WaveformGenerator.h \
            Source/WavegenBuiltin.h \
            Source/WavProgressDlg.h \
+           Source/WavProgressDlg.h \
            Source/WinSDK/VersionHelpers.h \
            Source/WinSDK/winapifamily.h \
-           version.h
 
 
 # end regenerated
@@ -537,7 +538,7 @@ symbian {
 }
 
 win32 {
-    HEADERS += stdafx.h
+    HEADERS += Source/stdafx.h
 }
 
 unix:!symbian {
@@ -554,5 +555,5 @@ OTHER_FILES += \
 
 FORMS +=
 
-RESOURCES += \
-    $$TOP/common/resource.qrc
+#RESOURCES += \
+#    $$TOP/common/resource.qrc
