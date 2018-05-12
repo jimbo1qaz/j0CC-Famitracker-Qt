@@ -1,6 +1,8 @@
 #ifndef _EMU2413_H_
 #define _EMU2413_H_
 
+#include <stdint.h>
+
 #ifdef EMU2413_DLL_EXPORTS
 #define EMU2413_API __declspec(dllexport)
 #elif defined(EMU2413_DLL_IMPORTS)

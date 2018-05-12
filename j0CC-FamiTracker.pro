@@ -12,7 +12,7 @@ QT += core \
 
 {
     QT += widgets
-    CONFIG += c++11
+    CONFIG += c++17
     macx {
       QMAKE_CFLAGS += -mmacosx-version-min=10.7
       QMAKE_LFLAGS += -mmacosx-version-min=10.7
