@@ -87,18 +87,19 @@
     p = NULL;                                                                  \
   }
 
-// Calling member function
-#define CALL_MEMBER_FN(obj, ptr) ((obj)->*(ptr))
-
-#ifdef TRACE
-#undef TRACE
-#endif
 //#define new DEBUG_NEW
 
 #include "cqtmfc.h"
 #include "resource.h"
 
 #define DEBUG_NEW new
+
+// Calling member function
+#define CALL_MEMBER_FN(obj, ptr) ((obj)->*(ptr))
+
+#ifdef TRACE
+#undef TRACE
+#endif
 
 #ifdef _DEBUG
 template <typename... T> bool _trace(TCHAR *format, T... args) {
